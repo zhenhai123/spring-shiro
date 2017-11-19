@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!--自动扫描该包下的Controller类  -->
+	<context:component-scan base-package="com.ofsp" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	
+	<!-- 一般必须有的，不然找不到controller类 -->
+    <mvc:annotation-driven/>
+	<!-- 对静态资源的访问，将无法mapping到controllerd的 path教给服务器解决 -->
+	<mvc:default-servlet-handler/>
+	
+	
+	
+	
+	<!-- 静态资源的映射 -->
+	<!-- <mvc:resources mapping="/static/**" location="/static/" cache-period="31536000" />  -->
+
+	
+
+</beans>
